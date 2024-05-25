@@ -2,12 +2,28 @@ body {
     font-family: Arial, sans-serif;
 }
 .container {
-    max-width: 800px;
+    /* max-width: 800px;
     margin: 20px auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative; */
+
+    color: black;
+
+    width: 1280px;
+    height: 954px;
+    /* top: -513px;
+    left: -1220px;
+    gap: 0px;
+    opacity: 0px;
+    
+    background: rgba(241, 242, 247, 1); */
+
+    background: linear-gradient(0.56deg, #000000 -13.48%, rgba(0, 0, 0, 0) 78.75%);
+
+
 }
 input[type="text"] {
     width: calc(100% - 80px);
@@ -137,4 +153,32 @@ input[type="submit"] {
     letter-spacing: 0.04em;
     text-align: left;
 
+}
+
+
+/* Current date*/
+.current-date{
+    width: 630px;
+    height: 278px;
+    /* top: 672px; */
+    left: 0px;
+    bottom: 0px;
+    gap: 0px;
+    border-radius: 0px 34px 0px 0px;
+    opacity: 0px;
+
+    background: rgba(16, 33, 54, 0.6);
+    position: absolute;
+    align-content: center;
+}
+
+.current-date-info{
+    width: 433px;
+    height: 128px;
+    margin: auto;
+    left: 110px;
+    gap: 0px;
+    opacity: 0px;    
+
+    border: 1px solid rgba(255, 255, 255, 1)
 }
