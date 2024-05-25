@@ -1,0 +1,140 @@
+body {
+    font-family: Arial, sans-serif;
+}
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+input[type="text"] {
+    width: calc(100% - 80px);
+    padding: 10px;
+    font-size: 16px;
+}
+input[type="submit"] {
+    width: 80px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.forecast {
+    display: flex;
+    overflow-x: auto;
+    margin-top: 20px;
+}
+.day {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+.day:hover {
+    background-color: #f0f0f0;
+}
+.weather-info {
+    margin-top: 20px;
+}
+.hide {
+    display: none;
+}
+
+/* Image Styles */
+
+.currentforecast img {
+    width: 100px;
+    height: 100px;
+}
+
+.currentforecast p {
+    margin: 5px 0;
+}
+
+/* Buttons */
+.btn {
+    font-family: Roboto Lato;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 16.8px;    
+    text-align: center;
+
+    color: black;
+
+    width: 126px;
+    height: 27px;
+    top: 580px;
+    left: 900px;
+    padding: 0px 12px 0px 12px;
+    gap: 10px;
+    border-radius: 20px;
+    opacity: 0px;
+}
+.five-day-btn{
+    background-color: rgba(255, 255, 255, 0.5);
+}
+.today-btn {
+    background-color:rgba(255, 255, 255, 1)
+}
+.search-buttons{
+    /* width: 417px; */
+    height: 28px;
+    /* top: 139px;
+    left: 400px; */
+    /* column-gap : 30px; */
+    opacity: 0px;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+.city-search{
+    /* width: 520px;
+    height: 88px; */
+    /* top: 79px;
+    left: 380px; */
+    column-gap: 103px;
+    opacity: 0px;
+}
+
+/* Input/s */
+.city{
+    width: 520px;
+    height: 48px;
+    /* top: 79px;
+    left: 380px; */
+    /* gap: 0px; */
+    border-radius: 30px;
+    opacity: 0px;
+}
+.input-city{
+    /* width: 520px; */
+    height: 48px;
+    /* top: 79px;
+    left: 380px; */
+    /* gap: 0px; */
+    border-radius: 30px;
+    opacity: 0px;
+
+    background-color: rgba(255, 255, 255, 1);
+    
+
+
+    /* text */
+    /* width: 116px; */
+    height: 22px;
+    /* top: 92px;
+    left: 434px; */
+    /* gap: 0px; */
+    opacity: 0px;
+
+    font-family: Roboto Lato;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21.6px;
+    letter-spacing: 0.04em;
+    text-align: left;
+
+}
