@@ -1,15 +1,46 @@
 <!DOCTYPE html>
-<html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page title</title>
-    <link rel="stylesheet" href="./sass/index.scss" />
-    <script type="module" src="./index.js"></script>
-  </head>
-  <body>
-    <h1>Example title</h1>
-    <!-- ❗️❗️❗️ Add partials like so for every page -->
-    <include src="./partials/example.html"></include>
-  </body>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weather App</title>
+<link rel="stylesheet" type="text/css" href="./Css/styles.css">
+</head>
+<body>
+
+<div class="container">
+    <form id="searchForm">
+        <input type="text" id="cityInput" placeholder="Enter city name">
+        <input type="submit" value="Search">
+        <button id="favoriteBtn">Favorite</button>
+        <label>
+    </form>
+
+    <div>
+        <h1 id="cityName"></h1>
+        <label>
+            <input type="radio" name="unit" value="metric" checked> °C
+        </label>
+        <label>
+            <input type="radio" name="unit" value="imperial"> °F
+        </label>
+
+        <div id="currentforecast" class="currentforecast">current weather</div>
+        <div id="currentdate" class="currentdate">current date</div>
+
+
+    </div>
+
+    <div id="forecast" class="forecast"></div>
+    <div id="weatherInfo" class="weather-info"></div>
+</div>
+
+<button id="showGraphBtn">Show Graph</button>
+<canvas id="weatherChart" width="400" height="200" style="display:none;"></canvas>
+
+
+
+
+
+</body>
 </html>
