@@ -4,14 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Weather App</title>
-<link rel="stylesheet" type="text/css" href="./Css/styles.css">
+<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
 
 <div class="container">
     <form id="searchForm">
         <input type="text" id="cityInput" placeholder="Enter city name">
-        <input type="submit" value="Search">
+        <button type="submit" value="Search">5 days</button>
+        <button type="submit" value="Search">Today</button>
         <button id="favoriteBtn">Favorite</button>
         <label>
     </form>
@@ -35,12 +36,17 @@
     <div id="weatherInfo" class="weather-info"></div>
 </div>
 
+
+
+
 <button id="showGraphBtn">Show Graph</button>
 <canvas id="weatherChart" width="400" height="200" style="display:none;"></canvas>
 
 
 
-
-
+<script src="fiveDays.js"></script>
+<script src="currentW.js"></script>
+<script src="chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>
