@@ -148,9 +148,5 @@ function displayWeatherInfo(weatherData) {
 
         weatherElement.innerHTML = `
             <div>${time}</div>
-            <img src="${icon}`
-
-
-}
-
-
+            <img src="${icon}`}
+// end //
