@@ -181,3 +181,19 @@ document.getElementById('showGraphBtn').addEventListener('click', function() {
     const chartElement = document.getElementById('weatherChart');
     chartElement.style.display = 'block';
 });
+
+/// Buttons /////
+
+
+document.getElementById('fWeather').addEventListener('click', function(){
+    document.getElementById('currentforecast').style.display = 'none';
+    document.getElementById('currentdate').style.display = 'none';
+    document.getElementById('forecast').style.display = 'block';
+    
+} )
+
+document.getElementById('tWeather').addEventListener('click', function(){
+    document.getElementById('currentforecast').style.display = 'block';
+    document.getElementById('currentdate').style.display = 'block';
+    document.getElementById('forecast').style.display = 'none';
+} )
