@@ -194,6 +194,6 @@ document.getElementById('fWeather').addEventListener('click', function(){
 
 document.getElementById('tWeather').addEventListener('click', function(){
     document.getElementById('currentforecast').style.display = 'block';
-    document.getElementById('currentdate').style.display = 'block';
+    document.getElementById('currentdate').style.display = 'none';
     document.getElementById('forecast').style.display = 'none';
 } )
