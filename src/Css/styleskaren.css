@@ -22,7 +22,7 @@ body {
     background: rgba(241, 242, 247, 1); */
 
     background: linear-gradient(0.56deg, #000000 -13.48%, rgba(0, 0, 0, 0) 78.75%);
-
+    position: relative;
 
 }
 input[type="text"] {
@@ -36,11 +36,12 @@ input[type="submit"] {
     font-size: 16px;
     cursor: pointer;
 }
-.forecast {
+/* .forecast {
     display: flex;
     overflow-x: auto;
     margin-top: 20px;
-}
+    position: absolute;
+} */
 .day {
     flex: 1;
     text-align: center;
@@ -160,9 +161,9 @@ input[type="submit"] {
 .current-date{
     width: 630px;
     height: 278px;
-    /* top: 672px; */
-    left: 0px;
-    bottom: 0px;
+    top: 672px; 
+    /* left: 0px;
+    bottom: 0px; */
     gap: 0px;
     border-radius: 0px 34px 0px 0px;
     opacity: 0px;
@@ -181,4 +182,42 @@ input[type="submit"] {
     opacity: 0px;    
 
     border: 1px solid rgba(255, 255, 255, 1)
+}
+
+/* Today's temperature */
+.today-temp{
+    width: 450px;
+    height: 300px;
+    top: 259px;
+    left: 830px;
+    gap: 0px;
+    border-radius: 34px 0px 0px 34px;
+    opacity: 0px;
+    position: absolute;
+
+    border: 1px solid rgba(39, 56, 74, 1)
+}
+.today-temp-info{
+    width: 120px;
+    height: 235px;
+    top: 288px;
+    left: 974px;
+    gap: 0px;
+    opacity: 0px;
+
+}
+/* Forecast */
+.forecast {
+    display: flex;
+    overflow-x: auto;
+    margin-top: 20px;
+    position: absolute;
+
+    width: 1060px;
+    height: 308px;
+    top: 532px;
+    left: 110px;
+    gap: 0px;
+    border-radius: 34px;
+    opacity: 0px;
 }

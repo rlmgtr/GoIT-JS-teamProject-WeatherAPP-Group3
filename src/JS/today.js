@@ -63,6 +63,7 @@ function fetchCurrentWeather(city) {
                 <p>Sunrise: ${sunrise}</p>
                 <p>Sunset: ${sunset}</p>
             `;
+
             document.getElementById('currentforecast').innerHTML = weatherInfo;
             document.getElementById('cityName').innerText = city;
 
