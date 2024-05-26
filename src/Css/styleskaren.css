@@ -117,6 +117,15 @@ input[type="submit"] {
 }
 
 /* Input/s */
+.search-box{
+    width: 520px;
+    height: 88px;
+    top: 79px;
+    left: 380px;
+    gap: 0px;
+    opacity: 0px;
+    position: absolute;
+}
 .city{
     width: 520px;
     height: 48px;
