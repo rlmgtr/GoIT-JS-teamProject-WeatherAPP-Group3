@@ -57,7 +57,7 @@ input[type="submit"] {
 }
 
 
-/* additional */
+/*********************************************** additional */
 
 html {
     box-sizing: border-box;
@@ -83,6 +83,10 @@ html {
     text-transform: uppercase;
     cursor: pointer;
     outline: none
+}
+
+.wBtn {
+    
 }
 
 body {
@@ -121,4 +125,36 @@ body {
     .container {
         width:1060px
     }
+}
+
+
+.currentforecast {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Lato,sans-serif;
+    color: #fff;
+    box-shadow: 0 8px 43px rgba(16,33,54,.8);
+    border-radius: 35px;
+    background-color: rgba(16,33,54,.933333);
+    padding: 38px 60px 40px;
+    position: relative;
+    margin-bottom: 32px
+}
+
+
+.forecast {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Lato,sans-serif;
+    color: #fff;
+    box-shadow: 0 8px 43px rgba(16,33,54,.8);
+    border-radius: 35px;
+    background-color: rgba(16,33,54,.933333);
+    padding: 38px 60px 40px;
+    position: relative;
+    margin-bottom: 32px
 }
