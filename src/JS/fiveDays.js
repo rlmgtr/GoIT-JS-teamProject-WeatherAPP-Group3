@@ -144,13 +144,13 @@ function displayWeatherInfo(weatherData) {
         const clouds = item.clouds.all;
         const windSpeed = item.wind.speed;
         const visibility = item.visibility / 1000; // Convert visibility to kilometers
-        const iconUrl = `https://openweathermap.org/img/w/${item.weather[0].icon}.png`;
+        const iconUrl = `https://openweathermap.org/img/w/${item.weather[0].icon}.png`});
 
         weatherElement.innerHTML = `
             <div>${time}</div>
-            <img src="${icon
+            <img src="${icon}`
 
 
-
+}
 
 
