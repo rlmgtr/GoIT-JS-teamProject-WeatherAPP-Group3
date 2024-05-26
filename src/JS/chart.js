@@ -186,14 +186,14 @@ document.getElementById('showGraphBtn').addEventListener('click', function() {
 
 
 document.getElementById('fWeather').addEventListener('click', function(){
-    document.getElementById('currentforecast').style.display = 'none';
-    document.getElementById('currentdate').style.display = 'none';
-    document.getElementById('forecast').style.display = 'block';
+    document.getElementById('cWeather').style.display = 'none';
+    document.getElementById('cDate').style.display = 'none';
+    document.getElementById('fDWeather').style.display = 'block';
     
 } )
 
 document.getElementById('tWeather').addEventListener('click', function(){
-    document.getElementById('currentforecast').style.display = 'block';
-    document.getElementById('currentdate').style.display = 'none';
-    document.getElementById('forecast').style.display = 'none';
+    document.getElementById('cWeather').style.display = 'block';
+    document.getElementById('cDate').style.display = 'block';
+    document.getElementById('fDWeather').style.display = 'none';
 } )

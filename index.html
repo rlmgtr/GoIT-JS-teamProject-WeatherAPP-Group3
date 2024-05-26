@@ -13,12 +13,13 @@
     <form id="searchForm">
         <input type="text" id="cityInput" placeholder="Enter city name">
         <button id="favoriteBtn">Favorite</button>
-        <button type="submit" value="Search">Today</button>
-        <button type="submit" value="Search">5 days</button>
-        
+        <button id="tWeather" type="submit" value="Search">Today</button>
+        <button id="fWeather" type="submit" value="Search">5 days</button>
     </form>
 <label>
-    <div>
+         
+
+        <div>
         <h1 id="cityName"></h1>
         <label>
             <input type="radio" name="unit" value="metric" checked> °C
@@ -30,19 +31,34 @@
 
 <!-- This is current weather and date-->
 
+
+    <div id="cWeather">
         <div id="currentforecast" class="currentforecast">current weather</div>
-        <div id="currentdate" class="currentdate">current date</div>
-
-
     </div>
-    <!-- This is five days forecast and 3 hours update-->   
-    <div id="forecast" class="forecast"></div>
+
+    <div id="cDate">
+    <div id="currentdate" class="currentdate">current date</div>
+    </div>
+
+    <!-- This is five days forecast and 3 hours update--> 
+    
+    <div id="fDWeather" hidden >
+    <div id="forecast" class="forecast" ></div>
     <div id="weatherInfo" class="weather-info"></div>
-</div>
+
+    <div id="fDChart">
+    <button id="showGraphBtn">Show Graph</button>
+    <canvas id="weatherChart" width="100" height="50" style="display:none;"></canvas>
+    </div>
+    
+
+    
+
+<div>
 
 
-<button id="showGraphBtn">Show Graph</button>
-<canvas id="weatherChart" width="100" height="50" style="display:none;"></canvas>
+
+ <!-- This is JS codes--> 
 
 <script src="./src/JS/fiveDays.js"></script>
 <script src="./src/JS/today.js"></script>
