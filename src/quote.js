@@ -1,3 +1,33 @@
+const quotes = [
+    { text: "So divinely is the world organized that every one of us, in our place and time, is in balance with everything else.", author: "Johann Wolfgang Von Goethe" },
+    { text: "Life isn't about finding yourself. Life is about creating yourself.", author: "George Bernard Shaw" },
+    { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+    { text: "The best way to predict the future is to create it.", author: "Peter Drucker" },
+    { text: "You miss 100% of the shots you don’t take.", author: "Wayne Gretzky" },
+    { text: "Do not watch the clock. Do what it does. Keep going.", author: "Sam Levenson" },
+    { text: "Success is not the key to happiness. Happiness is the key to success.", author: "Albert Schweitzer" },
+    // Add more quotes as needed
+];
+
+
+function getRandomQuote() {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    return quotes[randomIndex];
+}
+
+
+function displayRandomQuote() {
+    const quote = getRandomQuote();
+    const quoteTextElement = document.querySelector('.quote-text');
+    const quoteAuthorElement = document.querySelector('.quote-author');
+
+    quoteTextElement.textContent = quote.text;
+    quoteAuthorElement.textContent = `- ${quote.author}`;
+}
+
+
+document.addEventListener('DOMContentLoaded', displayRandomQuote);
+
 document.getElementById('searchForm').addEventListener('submit', function(event) {
     event.preventDefault();
     const city = document.getElementById('cityInput').value;
@@ -36,6 +66,7 @@ function fetchWeather(city) {
 
         displayForecast(forecast);
         prepareChartData(forecast);
+        displayRandomQuote(); // Call this function to change the quote
     })
     .catch(error => {
         console.error('Error fetching data:', error);
@@ -76,7 +107,6 @@ function displayWeatherInfo(weatherData) {
 
     weatherData.forEach(item => {
         const weatherElement = document.createElement('div');
-          weatherElement.classList.add('weather-element');
         const time = new Date(item.dt * 1000).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
         const temperature = item.main.temp;
         const description = item.weather[0].description;
@@ -86,13 +116,13 @@ function displayWeatherInfo(weatherData) {
         const iconUrl = `https://openweathermap.org/img/w/${item.weather[0].icon}.png`;
 
         weatherElement.innerHTML = `
-           <div class="weather-time">${time}</div>
-            <img class="weather-icon" src="${iconUrl}" alt="${description}">
-            <div class="weather-temp">Temperature: ${temperature}${unitSymbol}</div>
-            <div class="weather-desc">Description: ${description}</div>
-            <div class="weather-clouds">Clouds: ${clouds}% <img class="icon" src="cloud-icon.png" alt="Clouds"></div>
-            <div class="weather-wind">Wind Speed: ${windSpeed} m/s <img class="icon" src="wind-icon.png" alt="Wind"></div>
-            <div class="weather-visibility">Visibility: ${visibility} km <img class="icon" src="visibility-icon.png" alt="Visibility"></div>
+            <div>${time}</div>
+            <img src="${iconUrl}" alt="${description}">
+            <div>Temperature: ${temperature}${unitSymbol}</div>
+            <div>Description: ${description}</div>
+            <div>Clouds: ${clouds}% <img src="cloud-icon.png" alt="Clouds"></div>
+            <div>Wind Speed: ${windSpeed} m/s <img src="wind-icon.png" alt="Wind"></div>
+            <div>Visibility: ${visibility} km <img src="visibility-icon.png" alt="Visibility"></div>
         `;
         weatherInfoContainer.appendChild(weatherElement);
     });
@@ -133,7 +163,7 @@ function displayChart(labels, temperatures, humidities, windSpeeds, pressures) {
                 {
                     label: 'Temperature (°C)',
                     data: temperatures,
-                    borderColor: 'orange',
+                    borderColor: 'red',
                     fill: false
                 },
                 {
@@ -145,56 +175,27 @@ function displayChart(labels, temperatures, humidities, windSpeeds, pressures) {
                 {
                     label: 'Wind Speed (m/s)',
                     data: windSpeeds,
-                    borderColor: 'black',
+                    borderColor: 'green',
                     fill: false
                 },
                 {
                     label: 'Pressure (hPa)',
                     data: pressures,
-                    borderColor: 'green',
+                    borderColor: 'purple',
                     fill: false
                 }
             ]
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false,
             scales: {
-                x: {
-                    display: true,
-                    title: {
-                        display: true,
-                        text: 'Date'
-                    }
-                },
                 y: {
-                    display: true,
-                    title: {
-                        display: true,
-                        text: 'Value'
-                    }
+                    beginAtZero: true
                 }
             }
         }
     });
+
+    document.getElementById('weatherChart').style.display = 'block';
 }
-
-document.getElementById('showGraphBtn').addEventListener('click', function() {
-    const chartElement = document.getElementById('weatherChart');
-    chartElement.style.display = 'block';
-});
-
-/// Buttons /////
-
-
-document.getElementById('fWeather').addEventListener('click', function(){
-    document.getElementById('cWeather').style.display = 'none';
-    document.getElementById('cDate').style.display = 'none';
-    document.getElementById('fDWeather').style.display = 'block';
-    
-} )
-
-document.getElementById('tWeather').addEventListener('click', function(){
-    document.getElementById('cWeather').style.display = 'block';
-    document.getElementById('cDate').style.display = 'block';
-    document.getElementById('fDWeather').style.display = 'none';
-} )

@@ -7,20 +7,24 @@
     <link rel="stylesheet" type="text/css" href="./styles.css" />
     <style>
       body{
-        background-image: url("./bg.jpg");
+        background-image: url("./images/bg.jpg");
         background-size: cover;
       }
       </style>
   </head>
   <body>
+    
     <div class="container">
       <form id="searchForm">
+        
         <div class="form-input">
+          <img src="./images/icon-location.svg" class="icon-location">
           <input
             class="form-input-text"
             type="text"
             id="cityInput"
             placeholder="Enter City Name"
+            
           />
           <button id="favoriteBtn" class="favorite-button button">
             Favorite
@@ -59,13 +63,16 @@
         <!-- This is current weather and date-->
 
         <div id="cWeather" class="current-forecast">
+          
           <div id="currentforecast" class="currentforecast">
+            <div class="sunrise-icon" img src="../src/images/sunrise.png"></div>
+            <div class="sunset-icon" img src="../src/images/sunset.png"></div>
             current weather
           </div>
         </div>
       </div>
 
-      <div id="cDate" class="current-date-group">
+      <!-- <div id="cDate" class="current-date-group">
         <div id="currentdate" class="currentdate">current date</div>
         <div class="quote">
           <p class="quote-text">
@@ -73,6 +80,29 @@
             place and time, is in balance with everything else.
           </p>
           <p class="quote-author">Johann Wolfgang Von Goethe</p>
+        </div>
+      </div> -->
+
+      <!-- <div id="cDate" class="current-date-group">
+        <div id="currentdate" class="currentdate">current date</div>
+        <div class="quote-container">
+          <div class="quote">
+            <p class="quote-text">
+              So divinely is the world organized that every one of us, in our place and time, is in balance with everything
+              else.
+            </p>
+            <p class="quote-author">Johann Wolfgang Von Goethe</p>
+          </div>
+        </div>
+      </div> -->
+
+      <div id="cDate" class="current-date-group">
+        <div id="currentdate" class="currentdate">current date</div>
+        <div class="quote-container">
+          <div class="quote">
+            <p class="quote-text"></p>
+            <p class="quote-author"></p>
+          </div>
         </div>
       </div>
 
@@ -97,7 +127,6 @@
 
       </div>
 
-    
 
       <div id="fDChart" class="showgraph-group">
         
@@ -117,6 +146,7 @@
 <script src="./chart.js"></script>
 <script src="./beejay.js"></script>
 <script src="./favorite.js"></script>
+<script src="./quote.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 

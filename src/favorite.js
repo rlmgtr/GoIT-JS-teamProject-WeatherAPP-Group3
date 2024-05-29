@@ -56,12 +56,12 @@ function fetchCurrentWeather(city) {
             const sunset = new Date(data.sys.sunset * 1000).toLocaleTimeString();
             const unitSymbol = unit === 'metric' ? '°C' : '°F';
 
-            const weatherInfo = `
+           const weatherInfo = `
                 <img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="Weather icon">
                 <p>Weather: ${weatherDescription}</p>
                 <p>Temperature: ${temperature}${unitSymbol}</p>
-                <p>Sunrise: ${sunrise}</p>
-                <p>Sunset: ${sunset}</p>
+                <p>Sunrise | ${sunrise}</p>
+                <p>Sunset | ${sunset}</p>
             `;
             document.getElementById('currentforecast').innerHTML = weatherInfo;
             document.getElementById('cityName').innerText = city;
