@@ -152,15 +152,12 @@ body {
   margin-left: auto;
   margin-right: auto;
 
-  
   /* position: relative;
     margin-bottom: 32px; */
 }
 .sunrise-icon {
- position: relative;
- margin-top: 500px;
-
-
+  position: relative;
+  margin-top: 500px;
 }
 @media screen and (min-width: 768px) {
   .currentforecast {
@@ -198,7 +195,6 @@ body {
   margin-left: auto;
   margin-right: auto;
   font-size: 15px;
-  
 }
 
 @media screen and (min-width: 768px) {
@@ -268,7 +264,6 @@ body {
   margin-top: 30px;
   display: flex;
   justify-content: center;
-
 }
 
 @media screen and (min-width: 768px) {
@@ -282,8 +277,6 @@ body {
     margin-top: 0;
   }
 }
-
-
 
 .form-input-text {
   width: 280px;
@@ -299,7 +292,6 @@ body {
   border: 1px solid var(--white);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
   outline: none;
- 
 }
 
 .icon-location {
@@ -313,8 +305,6 @@ body {
   .form-input-text {
     font-size: 18px;
   }
-
-   
 }
 
 @media screen and (min-width: 1158px) {
@@ -322,8 +312,6 @@ body {
     width: 520px;
     font-size: 18px;
   }
-
-    
 }
 
 .form-submit {
@@ -446,8 +434,8 @@ body {
 }
 
 /* .quote { */
-  /* display: flex; */
-  /* color: #fff;
+/* display: flex; */
+/* color: #fff;
   justify-content: right;
   text-align: right;
   font-family: Lato;
@@ -504,18 +492,16 @@ body {
   letter-spacing: 0.72px;
 } */
 
- /* .current-date-group {
+.current-date-group {
   position: relative;
   margin: 20px 0;
-  
-  
-}   */
+}
 
 /* Styling for the quote container */
 .quote-container {
   position: absolute;
-  margin-right: 200px;
-  bottom: -60px;
+  margin-right: 60px;
+  bottom: 60px;
   right: 20px;
   max-width: 450px;
   padding: 15px;
@@ -526,11 +512,11 @@ body {
 /* Styling for the quote text */
 .quote {
   justify-content: right;
-    text-align: right;
-    font-family: Lato;
-    width: 350px;
-    height: 132px;
-    margin: 60px auto 0 auto;
+  text-align: right;
+  font-family: Lato;
+  width: 350px;
+  height: 132px;
+  margin: 60px auto 0 auto;
 }
 
 @media screen and (min-width: 768px) {
@@ -550,24 +536,24 @@ body {
 /* Text styling for quote text */
 .quote-text {
   font-size: 22px;
-    font-style: italic;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 0.88px;
-    margin-bottom: 15px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.88px;
+  margin-bottom: 15px;
 }
 
 /* Styling for the quote author */
 .quote-author {
-    color: #FFF;
-    text-align: right;
-    font-family: Lato;
-    font-size: 22px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 0.72px;
-  }
+  color: #fff;
+  text-align: right;
+  font-family: Lato;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.72px;
+}
 
 @media screen and (min-width: 768px) {
   .quote {
@@ -645,11 +631,9 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-    
 }
 
 .showgraph-button {
-
   height: 18px;
   border-color: transparent;
   background-color: transparent;
@@ -662,13 +646,11 @@ body {
   text-decoration-line: underline;
   margin-bottom: 12px;
   margin-left: 530px;
-  
 }
 .showgraph-button:hover {
   color: #ccc;
   cursor: pointer;
 }
-
 
 .chartstyle {
   /* display: flex; */ /* This line is commented out to avoid redundancy */
@@ -694,7 +676,6 @@ body {
   .chartstyle {
     width: 620px;
   }
- 
 }
 
 @media screen and (min-width: 1158px) {
@@ -702,7 +683,6 @@ body {
     width: 1060px;
   }
 }
-
 
 .weather-element {
   display: flex;
@@ -733,8 +713,6 @@ body {
   width: 20px;
   height: 20px;
 }
-
-
 
 .forecastwrap {
   /* display: flex; */
