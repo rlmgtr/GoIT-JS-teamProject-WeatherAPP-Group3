@@ -733,3 +733,24 @@ body {
   width: 20px;
   height: 20px;
 }
+
+
+
+.forecastwrap {
+  /* display: flex; */
+  width: 1180px;
+  height: 808px;
+  flex-direction: row;
+  justify-content: space-between;
+  /* align-items: center; */
+  font-family: Lato, sans-serif;
+  color: #fff;
+  box-shadow: 0 8px 43px rgba(16, 33, 54, 0.8);
+  border-radius: 34px;
+  background-color: rgba(16, 33, 54, 0.933333);
+  padding: 38px 60px 40px;
+  /* position: relative; */
+  margin-bottom: 32px;
+  margin-left: auto;
+  margin-right: auto;
+}

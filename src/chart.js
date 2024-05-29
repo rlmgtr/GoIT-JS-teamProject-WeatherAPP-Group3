@@ -198,3 +198,13 @@ document.getElementById('tWeather').addEventListener('click', function(){
     document.getElementById('cDate').style.display = 'block';
     document.getElementById('fDWeather').style.display = 'none';
 } )
+
+document.getElementById('showGraphBtn').addEventListener('click', function() {
+    document.getElementById('fDChart').hidden = false;
+    document.getElementById('weatherChart').style.display = 'block';
+});
+
+document.getElementById('hideGraphBtn').addEventListener('click', function() {
+    document.getElementById('fDChart').hidden = true;
+    document.getElementById('weatherChart').style.display = 'none';
+});
