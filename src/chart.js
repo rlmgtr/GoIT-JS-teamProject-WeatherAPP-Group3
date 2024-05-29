@@ -202,9 +202,13 @@ document.getElementById('tWeather').addEventListener('click', function(){
 document.getElementById('showGraphBtn').addEventListener('click', function() {
     document.getElementById('fDChart').hidden = false;
     document.getElementById('weatherChart').style.display = 'block';
+    document.getElementById('showGraphBtn').style.display = 'none'; // Hide show graph button
+    document.getElementById('hideGraphBtn').style.display = 'block'; // Show hide graph button
 });
 
 document.getElementById('hideGraphBtn').addEventListener('click', function() {
     document.getElementById('fDChart').hidden = true;
     document.getElementById('weatherChart').style.display = 'none';
+    document.getElementById('showGraphBtn').style.display = 'block'; // Show show graph button
+    document.getElementById('hideGraphBtn').style.display = 'none'; // Hide hide graph button
 });
