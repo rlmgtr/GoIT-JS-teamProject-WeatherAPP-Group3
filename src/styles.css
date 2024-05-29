@@ -504,12 +504,10 @@ body {
   letter-spacing: 0.72px;
 } */
 
- /* .current-date-group {
+.current-date-group {
   position: relative;
-  margin: 20px 0;
-  
-  
-}   */
+  margin: 20px 0; 
+}   
 
 /* Styling for the quote container */
 .quote-container {
