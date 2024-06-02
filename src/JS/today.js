@@ -49,20 +49,28 @@ function fetchCurrentWeather(city) {
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-            const weatherDescription = data.weather[0].description;
+            // const weatherDescription = data.weather[0].description;
             const temperature = data.main.temp;
             const icon = data.weather[0].icon;
-            const sunrise = new Date(data.sys.sunrise * 1000).toLocaleTimeString();
-            const sunset = new Date(data.sys.sunset * 1000).toLocaleTimeString();
-            const unitSymbol = unit === 'metric' ? '°C' : '°F';
+            // const sunrise = new Date(data.sys.sunrise * 1000).toLocaleTimeString();
+            // const sunset = new Date(data.sys.sunset * 1000).toLocaleTimeString();
+            // const unitSymbol = unit === 'metric' ? '°C' : '°F';
+
+            // const weatherInfo = `
+            //     <img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="Weather icon">
+            //     <p>Weather: ${weatherDescription}</p>
+            //     <p>Temperature: ${temperature}${unitSymbol}</p>
+            //     <p>Sunrise: ${sunrise}</p>
+            //     <p>Sunset: ${sunset}</p>
+            // `;
 
             const weatherInfo = `
-                <img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="Weather icon">
-                <p>Weather: ${weatherDescription}</p>
-                <p>Temperature: ${temperature}${unitSymbol}</p>
-                <p>Sunrise: ${sunrise}</p>
-                <p>Sunset: ${sunset}</p>
-            `;
+            <img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="Weather icon">
+
+            <p>${temperature}</p>
+            
+
+        `;
 
             document.getElementById('currentforecast').innerHTML = weatherInfo;
             document.getElementById('cityName').innerText = city;
