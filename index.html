@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>  
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -9,7 +9,14 @@
 <body>
 
 <div class="container">
-    <div class="search-box">
+    <div>
+        <div class="search">
+            <button><img src="images/search.png"></button>
+            <input type="text" placeholder="Enter city name" spellcheck="false" class="input-city">
+        </div>
+    </div>
+
+    <!-- <div class="search-box">
         <form id="searchForm" class="city-search">
             <input type="text" id="cityInput" placeholder="Enter city name" class="input-city">
             <div class="search-buttons">
@@ -18,7 +25,7 @@
                 <button id="favoriteBtn" class="btn">Favorite</button>
             </div>
         </form>
-    </div>
+    </div> -->
 
     <div class="current-date">
         <div class="current-date-info">
@@ -27,23 +34,27 @@
         </div>
     </div>
 
-    <div class="today-temp">
-        <div class="today-temp-info">
-            <h1 id="cityName"></h1>
-            <label>
-                <input type="radio" name="unit" value="metric" checked> °C
-            </label>
-            <label>
-                <input type="radio" name="unit" value="imperial"> °F
-            </label>
-
-            <div id="currentforecast" class="currentforecast">current weather</div>
+    <div class="weather">
+        <div class="weather-info">
+            <img src="images/rain.png" class="weather-icon">
+            <h2 class="city">New York</h2>
+            <h1 class="temp">22</h1>
+            <div class="details">
+                <div class="col">
+                    <p class="min-max">min</p>
+                    <p class="min-temp">25°</p>
+                </div>
+                <div class="col">
+                    <p class="min-max">max</p>
+                    <p class="max-temp">35°</p>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="search-button">
+    <!-- <div class="search-button">
         <button type="submit" value="Search" class="five-day-btn btn">5 DAYS</button>
         <button type="submit" value="Search" class="today-btn btn">TODAY</button>
-    </div>
+    </div> -->
 
     
 
