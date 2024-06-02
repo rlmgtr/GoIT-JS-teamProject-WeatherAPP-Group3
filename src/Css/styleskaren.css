@@ -73,6 +73,13 @@ input[type="submit"] {
 }
 
 /* Buttons */
+.button-box{
+    position: absolute;
+    top: 580px;
+    left: 900px;
+    column-gap: 18px;
+    display: flex;
+}
 .btn {
     /* font-family: Roboto Lato; */
     font-size: 14px;
@@ -84,12 +91,10 @@ input[type="submit"] {
 
     width: 126px;
     height: 27px;
-    top: 580px;
-    left: 900px;
     padding: 0px 12px 0px 12px;
     gap: 10px;
     border-radius: 20px;
-    opacity: 0px;
+    opacity: 0px;;
 }
 .five-day-btn{
     background-color: rgba(255, 255, 255, 0.5);
