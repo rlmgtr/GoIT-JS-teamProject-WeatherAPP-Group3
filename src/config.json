@@ -1,0 +1,6 @@
+{
+    "url": "https://api.openweathermap.org/data/2.5/",
+    "apiKey": "1328a08c8eed36865b9c197e848a2e0",
+    "units": "metric",
+    "metric": "celsius"
+}

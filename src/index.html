@@ -3,144 +3,82 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather App</title>
+    <title>GoIT-JS-teamProject-WeatherAPP-Group3</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weathertoday</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css"
+      integrity="sha512-ISS7cAi1PEhQ8jnbJpJZMd29NlhNj4AWYyLOSp2CE/CsHxTCu+r+t0D2yoJudVrd0/8fTVPUVDzY5Tvli75u/g=="
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" type="text/css" href="./styles.css" />
-    <style>
-      body{
-        background-image: url("./images/bg.jpg");
-        background-size: cover;
-      }
-      </style>
   </head>
   <body>
-    
-    <div class="container">
-      <form id="searchForm">
-        
-        <div class="form-input">
-          <img src="./images/icon-location.svg" class="icon-location">
-          <input
-            class="form-input-text"
-            type="text"
-            id="cityInput"
-            placeholder="Enter City Name"
-            
-          />
-          <button id="favoriteBtn" class="favorite-button button">
-            Favorite
+    <section class="container">
+      <div class="input-box">
+        <form class="input-form">
+          <input class="search-box" type="text" placeholder="Enter the city" name="query" />
+
+          <button class="favorite-btn btn" type="button">
+            <img src="./images/fav-icon.png" alt="favorite-btn" />
+          </button>
+        </form>
+      </div>
+
+      <div class="favorite-box">
+        <div>
+          <button class="left" hidden>
+            <img src="./images/arrowLeft.png" alt="fav-arrow-left" />
           </button>
         </div>
-        <div class="form-submit">
-          <button
-            id="tWeather"
-            type="submit"
-            class="button submit-button"
-            value="Search"
-          >
-            Today
-          </button>
-          <button
-            id="fWeather"
-            type="submit"
-            class="button submit-button"
-            value="Search"
-          >
-            5 days
+
+        <div class="city-list"></div>
+
+        <div>
+          <button class="right" hidden>
+            <img src="./images/arrowRight.png" alt="fav-arrow-left" />
           </button>
         </div>
-      </form>
-      <div class="current-weather-group">
-        <div class="current-city">
-          <h1 id="cityName" class="city-name"></h1>
-          <label class="celcius">
-            <input type="radio" name="unit" value="metric" checked /> °C
-          </label>
-          <label class="fahrenheit">
-            <input type="radio" name="unit" value="imperial" /> °F
-          </label>
-        </div>
+      </div>
 
-        <!-- This is current weather and date-->
-
-        <div id="cWeather" class="current-forecast">
-          
-          <div id="currentforecast" class="currentforecast">
-            <div class="sunrise-icon" img src="../src/images/sunrise.png"></div>
-            <div class="sunset-icon" img src="../src/images/sunset.png"></div>
-            current weather
+      <div class="content">
+        <div class="weather-box">
+          <div class="one-day" id="oneday"></div>
+          <div class="button-box">
+            <button class="one-day-btn button is-active" id="todayBtn" data-action="today">
+              today
+            </button>
+            <button class="five-day-btn button" id="fiveDaysBtn" data-action="fiveDays">
+              5 days
+            </button>
           </div>
-        </div>
-      </div>
-
-      <!-- <div id="cDate" class="current-date-group">
-        <div id="currentdate" class="currentdate">current date</div>
-        <div class="quote">
-          <p class="quote-text">
-            So divinely is the world organized that every one of us, in our
-            place and time, is in balance with everything else.
-          </p>
-          <p class="quote-author">Johann Wolfgang Von Goethe</p>
-        </div>
-      </div> -->
-
-      <!-- <div id="cDate" class="current-date-group">
-        <div id="currentdate" class="currentdate">current date</div>
-        <div class="quote-container">
-          <div class="quote">
-            <p class="quote-text">
-              So divinely is the world organized that every one of us, in our place and time, is in balance with everything
-              else.
-            </p>
-            <p class="quote-author">Johann Wolfgang Von Goethe</p>
+          <div class="calendar-desktop">
+            <div class="date"></div>
+            <div class="additional-info">
+              <p class="quote">
+                Who cares about the clouds when we're together? Just sing a song and bring the sunny
+                weather.
+              </p>
+              <p class="quote-author">Dale Evans</p>
+            </div>
           </div>
-        </div>
-      </div> -->
 
-      <div id="cDate" class="current-date-group">
-        <div id="currentdate" class="currentdate">current date</div>
-        <div class="quote-container">
-          <div class="quote">
-            <p class="quote-text"></p>
-            <p class="quote-author"></p>
+          <div class="more-info-weather">
+            <div class="fivedays-weather" hidden></div>
           </div>
+    <div class="fivedays-chart" hidden></div>
         </div>
       </div>
-
-      <!-- This is five days forecast and 3 hours update-->
-
-      <div id="fDWeather" hidden>
-        <div class="forecastwrap">
-      <div id="forecast" class="forecast"></div>
-      <div id="weatherInfo" class="weather-info hidden" >Choose a Day to show 3 Hours Forecast</div>
-    </div>
-
-    <button id="showGraphBtn" class="showgraph-button">Show Graph</button>
-    <button id="hideGraphBtn" class="showgraph-button">Hide Graph</button>
-
-
-      <div id="fDChart" class="showgraph-group" hidden>  
-        <canvas class="chartstyle"
-          id="weatherChart"
-          width="100"
-          height="50"
-          style="display: none"
-        ></canvas>
-      </div>
-      
-      </div>
-
-  
-
- <!-- This is JS codes--> 
-
-<script src="./today.js"></script>
-<script src="./fiveDays.js"></script>
-<script src="./chart.js"></script>
-<script src="./beejay.js"></script>
-<script src="./favorite.js"></script>
-<script src="./quote.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</body>
-
-
+    </section>
+   <!-- The script comes last in the markup. It already contains the main SASS file. -->
+    <script src="./index.js" type="module"></script>
+  </body>
 </html>
