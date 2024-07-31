@@ -1,57 +1,69 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const apiKey = "31328a08c8eed36865b9c197e848a2e0";
-    const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=";
-  
-    const searchBox = document.querySelector(".search input");
-    const searchBtn = document.querySelector(".search button");
-    const weatherIcon = document.querySelector(".weather-icon");
-  
-    async function checkWeather(city) {
-      try {
-        const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
-        if (!response.ok) {
-          throw new Error('City not found');
-        }
-        const data = await response.json();
-  
-        console.log(data);
-  
-        document.querySelector(".city").innerHTML = data.name;
-        document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
-        document.querySelector(".min-temp").innerHTML = Math.round(data.main.temp_min) + "°";
-        document.querySelector(".max-temp").innerHTML = Math.round(data.main.temp_max) + "°";
-  
-        switch (data.weather[0].main) {
-          case "Clouds":
-            weatherIcon.src = "images/clouds.png";
-            break;
-          case "Clear":
-            weatherIcon.src = "images/clear.png";
-            break;
-          case "Rain":
-            weatherIcon.src = "images/rain.png";
-            break;
-          case "Drizzle":
-            weatherIcon.src = "images/drizzle.png";
-            break;
-          case "Mist":
-            weatherIcon.src = "images/mist.png";
-            break;
-          default:
-            weatherIcon.src = ""; // Default image or leave it empty
-        }
-      } catch (error) {
-        console.error('Error fetching weather data:', error);
-        alert('Could not retrieve weather data. Please try again.');
-      }
-    }
-  
-    if (searchBtn && searchBox) {
-      searchBtn.addEventListener("click", () => {
-        checkWeather(searchBox.value);
-      });
-    } else {
-      console.error('Search button or search input not found');
-    }
-  });
-  
+import moreInfoTpl from '../templates/moreInfo.hbs';
+import { fiveDaysData } from './base/helper.js';
+
+const getMoreInfoData = target => {
+  const currentDay = target.dataset.day;
+  const dayInfo = fiveDaysData.find(({ day }) => day === +currentDay);
+  const moreDaysData = dayInfo.forecast.map(hourData => ({
+    day: hourData.dt_txt,
+    temp: Math.round(hourData.main.temp),
+    pressure: hourData.main.pressure,
+    windSpeed: hourData.wind.speed,
+    humidity: hourData.main.humidity,
+    icon: `http://openweathermap.org/img/wn/${hourData.weather[0].icon}@2x.png`,
+    hour: hourConverter(hourData.dt),
+  }));
+
+  renderMoreInfoData(moreDaysData);
+};
+
+function renderMoreInfoData(moreDaysData) {
+  const hoursWeather = document.querySelector('.hours-weather');
+  const moreInfoList = document.querySelector('.more-info-list');
+  const rightArrow = document.querySelector('#right-arrow');
+  const leftArrow = document.querySelector('#left-arrow');
+
+  hoursWeather.classList.remove('visually-hidden');
+  moreInfoList.innerHTML = moreInfoTpl(moreDaysData);
+  rightArrow.addEventListener('click', scrollToLeft);
+  leftArrow.addEventListener('click', scrollToRight);
+
+  function scrollToLeft() {
+    moreInfoList.scroll({
+      left: +moreInfoList.scrollLeft + 260,
+      behavior: 'smooth',
+    });
+  }
+
+  function scrollToRight() {
+    moreInfoList.scroll({
+      left: +moreInfoList.scrollLeft - 260,
+      behavior: 'smooth',
+    });
+  }
+  initEvtFiveDays();
+}
+
+function initEvtFiveDays() {
+  const moreInfoWeather = document.querySelector('.more-info-weather');
+  moreInfoWeather.addEventListener('click', handleMoreInfoClick);
+}
+
+function handleMoreInfoClick(event) {
+  event.preventDefault();
+  const target = event.target;
+
+  if (target.nodeName === 'BUTTON') {
+    getMoreInfoData(target);
+  }
+}
+
+function hourConverter(UNIX) {
+  let newDate = new Date(UNIX * 1000);
+  let hour = newDate.getUTCHours() < 10 ? '0' + newDate.getUTCHours() : newDate.getUTCHours();
+  let min = newDate.getMinutes() < 10 ? '0' + newDate.getUTCMinutes() : newDate.getUTCMinutes();
+  let CurrentHour = `${hour}:${min}`;
+  return CurrentHour;
+}
+
+export { initEvtFiveDays };

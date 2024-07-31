@@ -1,227 +1,147 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Event listener for form submission
-    const searchForm = document.getElementById('searchForm');
-    if (searchForm) {
-        searchForm.addEventListener('submit', function (event) {
-            event.preventDefault();
-            const city = document.getElementById('cityInput').value;
-            if (city) {
-                fetchWeather(city);
-            }
-        });
-    }
+import chartTpl from '../templates/chart.hbs';
+import Chart from 'chart.js/auto';
+import { fiveDaysData } from './base/helper.js';
 
-    // Event listeners for unit change
-    document.querySelectorAll('input[name="unit"]').forEach(radio => {
-        radio.addEventListener('change', function () {
-            const city = document.getElementById('cityInput').value;
-            if (city) {
-                fetchWeather(city);
-            }
-        });
-    });
+// *****
 
-    // Function to get selected unit
-    function getSelectedUnit() {
-        const unit = document.querySelector('input[name="unit"]:checked');
-        return unit ? unit.value : 'metric'; // Default to metric if no unit is selected
-    }
+const chartRef = document.querySelector('.fivedays-chart');
+chartRef.insertAdjacentHTML('beforeend', chartTpl());
+const ctx = document.querySelector('.js-chart').getContext('2d');
+const chartBox = document.querySelector('.chart-box');
 
-    // Function to fetch weather data
-    async function fetchWeather(city) {
-        const unit = getSelectedUnit();
-        const apiKey = 'f1a7f601f87c9d97579ef8237cc83ff1';
-        const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${unit}`;
+// *****
 
-        try {
-            const response = await fetch(apiUrl);
-            if (!response.ok) {
-                throw new Error('City not found');
-            }
-            const data = await response.json();
+const boxOfShowChart = document.querySelector('.show-chart-box');
+const hideChartRef = document.querySelector('.hide-chart');
 
-            const forecast = data.list.reduce((acc, item) => {
-                const date = item.dt_txt.split(' ')[0];
-                if (!acc[date]) {
-                    acc[date] = [];
-                }
-                acc[date].push(item);
-                return acc;
-            }, {});
+// ***** Вешаем слушатель события
+boxOfShowChart.addEventListener('click', onShowChartClick);
+hideChartRef.addEventListener('click', onHideChartClick);
 
-            displayForecast(forecast);
-            prepareChartData(forecast);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-            alert('Could not retrieve weather data. Please try again.');
-        }
-    }
+// *****
 
-    // Function to display forecast
-    function displayForecast(forecast) {
-        const forecastContainer = document.getElementById('forecast');
-        const unit = getSelectedUnit();
-        const unitSymbol = unit === 'metric' ? '°C' : '°F';
-        forecastContainer.innerHTML = '';
+function onShowChartClick() {
+  boxOfShowChart.classList.add('none');
+  chartBox.classList.add('visible');
+  getChartData();
+}
 
-        for (const date in forecast) {
-            const dayForecast = forecast[date];
-            const minTemp = Math.min(...dayForecast.map(item => item.main.temp_min));
-            const maxTemp = Math.max(...dayForecast.map(item => item.main.temp_max));
-            const dayElement = document.createElement('div');
-            dayElement.classList.add('day');
-            const iconUrl = `https://openweathermap.org/img/w/${dayForecast[0].weather[0].icon}.png`;
-            dayElement.innerHTML = `
-                <div>${new Date(dayForecast[0].dt * 1000).toDateString()}</div>
-                <img src="${iconUrl}" alt="${dayForecast[0].weather[0].description}">
-                <div>Min Temp: ${minTemp}${unitSymbol}</div>
-                <div>Max Temp: ${maxTemp}${unitSymbol}</div>
-            `;
-            dayElement.addEventListener('click', function () {
-                displayWeatherInfo(dayForecast);
-            });
-            forecastContainer.appendChild(dayElement);
-        }
-    }
+function onHideChartClick() {
+  chartBox.classList.remove('visible');
+  boxOfShowChart.classList.remove('none');
+  if (chart) {
+    chart.destroy();
+  }
+}
 
-    // Function to display detailed weather info
-    function displayWeatherInfo(weatherData) {
-        const weatherInfoContainer = document.getElementById('weatherInfo');
-        const unit = getSelectedUnit();
-        const unitSymbol = unit === 'metric' ? '°C' : '°F';
-        weatherInfoContainer.innerHTML = '';
+let chart = null;
 
-        weatherData.forEach(item => {
-            const weatherElement = document.createElement('div');
-            weatherElement.classList.add('weather-element');
-            const time = new Date(item.dt * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            const temperature = item.main.temp;
-            const description = item.weather[0].description;
-            const clouds = item.clouds.all;
-            const windSpeed = item.wind.speed;
-            const visibility = item.visibility / 1000; // Convert visibility to kilometers
-            const iconUrl = `https://openweathermap.org/img/w/${item.weather[0].icon}.png`;
+function getChartData() {
+  // renderChartData();
+  // 1. Получаем число, месяц, год
+  const сhartData = fiveDaysData.map(e => {
+    return e.month + ' ' + e.day + ', ' + e.year;
+  });
+  // 2. Получаем температуру
+  const сhartTemp = fiveDaysData.map(e => e.tempDay);
+  // 3. Получаем влажность
+  const сhartHumidity = fiveDaysData.map(e => e.humidity);
+  // 4. Получаем скорость ветра
+  const сhartWindSpeed = fiveDaysData.map(e => e.wind);
+  // 5. Получаем давление
+  const сhartPressure = fiveDaysData.map(e => e.pressure);
 
-            weatherElement.innerHTML = `
-                <div class="weather-time">${time}</div>
-                <img class="weather-icon" src="${iconUrl}" alt="${description}">
-                <div class="weather-temp">Temperature: ${temperature}${unitSymbol}</div>
-                <div class="weather-desc">Description: ${description}</div>
-                <div class="weather-clouds">Clouds: ${clouds}% <img class="icon" src="cloud-icon.png" alt="Clouds"></div>
-                <div class="weather-wind">Wind Speed: ${windSpeed} m/s <img class="icon" src="wind-icon.png" alt="Wind"></div>
-                <div class="weather-visibility">Visibility: ${visibility} km <img class="icon" src="visibility-icon.png" alt="Visibility"></div>
-            `;
-            weatherInfoContainer.appendChild(weatherElement);
-        });
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: сhartData,
 
-        weatherInfoContainer.classList.remove('hide');
-    }
+      datasets: [
+        {
+          label: '— Temperature, C° ',
+          data: сhartTemp,
+          backgroundColor: '#FF6B09',
+          borderColor: '#FF6B09',
+          borderWidth: 1,
+          fill: false,
+        },
+        {
+          label: '— Humidity, % ',
+          data: сhartHumidity,
+          backgroundColor: '#0906EB',
+          borderColor: '#0906EB',
+          fill: false,
+          borderWidth: 1,
+        },
+        {
+          label: '— Wind Speed, m/s ',
+          data: сhartWindSpeed,
+          backgroundColor: '#EA9A05',
+          borderColor: '#EA9A05',
+          fill: false,
+          borderWidth: 1,
+        },
+        {
+          label: '— Atmosphere Pressure, m/m',
+          data: сhartPressure,
+          backgroundColor: '#067806',
+          borderColor: '#067806',
+          fill: false,
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      plugins: {
+        legend: {
+          display: true,
+          align: 'start',
+          // position: 'bottom',
 
-    // Function to prepare chart data
-    function prepareChartData(forecast) {
-        const labels = Object.keys(forecast);
-        const temperatures = [];
-        const humidities = [];
-        const windSpeeds = [];
-        const pressures = [];
+          labels: {
+            boxWidth: 12,
+            boxHeight: 12,
+            defaultFontColor: 'rgb(5, 120, 6)',
+            padding: 10,
+          },
+        },
+      },
 
-        for (const date in forecast) {
-            const dayForecast = forecast[date];
-            const avgTemp = dayForecast.reduce((sum, item) => sum + item.main.temp, 0) / dayForecast.length;
-            const avgHumidity = dayForecast.reduce((sum, item) => sum + item.main.humidity, 0) / dayForecast.length;
-            const avgWindSpeed = dayForecast.reduce((sum, item) => sum + item.wind.speed, 0) / dayForecast.length;
-            const avgPressure = dayForecast.reduce((sum, item) => sum + item.main.pressure, 0) / dayForecast.length;
+      interaction: {
+        mode: 'point',
+      },
 
-            temperatures.push(avgTemp);
-            humidities.push(avgHumidity);
-            windSpeeds.push(avgWindSpeed);
-            pressures.push(avgPressure);
-        }
+      scales: {
+        x: {
+          grid: {
+            color: 'rgba(255, 255, 255, 0.54)',
 
-        displayChart(labels, temperatures, humidities, windSpeeds, pressures);
-    }
-
-    // Function to display chart
-    function displayChart(labels, temperatures, humidities, windSpeeds, pressures) {
-        const ctx = document.getElementById('weatherChart').getContext('2d');
-        const chart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [
-                    {
-                        label: 'Temperature (°C)',
-                        data: temperatures,
-                        borderColor: 'orange',
-                        fill: false
-                    },
-                    {
-                        label: 'Humidity (%)',
-                        data: humidities,
-                        borderColor: 'blue',
-                        fill: false
-                    },
-                    {
-                        label: 'Wind Speed (m/s)',
-                        data: windSpeeds,
-                        borderColor: 'black',
-                        fill: false
-                    },
-                    {
-                        label: 'Pressure (hPa)',
-                        data: pressures,
-                        borderColor: 'green',
-                        fill: false
-                    }
-                ]
+            ticks: {
+              padding: 20,
             },
-            options: {
-                responsive: true,
-                scales: {
-                    x: {
-                        display: true,
-                        title: {
-                            display: true,
-                            text: 'Date'
-                        }
-                    },
-                    y: {
-                        display: true,
-                        title: {
-                            display: true,
-                            text: 'Value'
-                        }
-                    }
-                }
-            }
-        });
-    }
+          },
+        },
+        y: {
+          title: {
+            display: true,
+            text: 'Value of indicators',
+            position: 'left',
+          },
+          grid: {
+            color: 'rgba(255, 255, 255, 0.54)',
+            stepSize: 0.5,
 
-    // Toggle between weather views
-    document.getElementById('fWeather').addEventListener('click', function () {
-        document.getElementById('cWeather').style.display = 'none';
-        document.getElementById('cDate').style.display = 'none';
-        document.getElementById('fDWeather').style.display = 'block';
-    });
+            ticks: {
+              padding: 20,
+            },
+          },
+        },
+      },
+      responsive: true,
+      maintainAspectRatio: false,
+    },
+  });
+  // initEvtFiveDays();
+}
 
-    document.getElementById('tWeather').addEventListener('click', function () {
-        document.getElementById('cWeather').style.display = 'block';
-        document.getElementById('cDate').style.display = 'block';
-        document.getElementById('fDWeather').style.display = 'none';
-    });
-
-    // Show and hide graph
-    document.getElementById('showGraphBtn').addEventListener('click', function () {
-        document.getElementById('fDChart').hidden = false;
-        document.getElementById('weatherChart').style.display = 'block';
-        document.getElementById('showGraphBtn').style.display = 'none';
-        document.getElementById('hideGraphBtn').style.display = 'block';
-    });
-
-    document.getElementById('hideGraphBtn').addEventListener('click', function () {
-        document.getElementById('fDChart').hidden = true;
-        document.getElementById('weatherChart').style.display = 'none';
-        document.getElementById('showGraphBtn').style.display = 'block';
-        document.getElementById('hideGraphBtn').style.display = 'none';
-    });
-});
+export default onHideChartClick;
