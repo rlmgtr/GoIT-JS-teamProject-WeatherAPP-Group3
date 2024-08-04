@@ -1,15 +1,15 @@
+
+import axios from 'axios';
 import './sass/main.scss';
+import './js/favorits'
+import './js/apiService';
 
-import './js/base/apiService.js';
-import './js/base/helper.js';
+import './js/fiveDays';
+import './js/more-info';
+import './js/randomImg';
+import './js/randomQuote';
+import './js/today';
+import './js/timenow';
+import './js/chart';
 
-import './js/header.js';
-import './js/calendar.js';
-import './js/buttons.js';
-import './js/oneDay.js';
-import './js/fiveDays.js';
-import './js/moreInfo.js';
-import './js/chart.js';
 
-import './js/components/bg-service.js';
-import './js/components/quotes.js';
